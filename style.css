@@ -1,0 +1,125 @@
+/* ==========================================================================
+   CareSync HMS - Stylesheet & Screen Management
+   ========================================================================== */
+
+/* 1. Global Box Sizing & Font Smoothing */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f8fafc; /* Slate 50 */
+  color: #1e293b; /* Slate 800 */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 2. Screen Visibility Rules */
+.app-screen {
+  transition: opacity 0.2s ease-in-out;
+}
+
+/* 3. Custom Medical Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9; /* Slate 100 */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1; /* Slate 300 */
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8; /* Slate 400 */
+}
+
+/* 4. Form Control Focus Accents */
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #0ea5e9 !important; /* Medical Cyan 500 */
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15) !important;
+}
+
+/* 5. Table Rows & Transitions */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+tbody tr {
+  transition: background-color 0.15s ease-in-out;
+}
+
+/* 6. Soft Animation for In-Chamber Status */
+@keyframes chamberPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.02);
+  }
+}
+
+.animate-pulse {
+  animation: chamberPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* 7. Print Specifications for Prescription Output */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  .no-print,
+  header,
+  footer,
+  button,
+  .app-screen {
+    display: none !important;
+  }
+
+  #viewPrescriptionModal,
+  #viewPrescriptionModal * {
+    visibility: visible;
+  }
+
+  #viewPrescriptionModal {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    box-shadow: none !important;
+    border: none !important;
+    overflow: visible !important;
+  }
+
+  #printablePrescriptionContent {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    padding: 24px 32px !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: #ffffff !important;
+  }
+}
